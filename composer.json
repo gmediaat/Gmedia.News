@@ -1,0 +1,25 @@
+{
+	"name": "gmedia/news",
+	"type": "typo3-flow-plugin",
+	"description": "News plugin for TYPO3 Neos",
+	"version": "3.0.0-dev",
+	"license": "GPL-3.0+",
+	"authors": [
+		{
+			"name": "G-Media",
+			"email": "felix@g-media.at"
+		},
+		{
+			"name": "Lelesys"
+		}
+	],
+	"require": {
+		"typo3/neos": "dev-master",
+		"gmedia/kreftteam": "dev-master"
+	},
+	"autoload": {
+		"psr-0": {
+			"Gmedia\\News": "Classes"
+		}
+	}
+}

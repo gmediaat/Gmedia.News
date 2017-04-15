@@ -1,0 +1,3 @@
+prototype(Gmedia.News:ResponseManipulator) {
+	@class = 'Gmedia\\News\\TypoScript\\ResponseManipulatorImplementation'
+}

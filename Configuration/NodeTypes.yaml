@@ -1,0 +1,331 @@
+'Gmedia.News:Folder':
+  superTypes:
+    'TYPO3.Neos:Document': TRUE
+  ui:
+    label: 'News folder'
+    icon: 'icon-folder-open'
+    group: 'news'
+    inspector:
+      groups:
+        news:
+          label: 'News'
+  childNodes:
+    main:
+      type: 'TYPO3.Neos:ContentCollection'
+  properties:
+    feedTitle:
+      type: string
+      ui:
+        label: 'Feed title'
+        inspector:
+          group: 'news'
+    feedDescription:
+      type: string
+      ui:
+        label: 'Feed description'
+        inspector:
+          group: 'news'
+
+'Gmedia.News:Category':
+  superTypes:
+    'TYPO3.Neos:Document': TRUE
+  ui:
+    label: 'News category'
+    icon: 'icon-file'
+    group: 'news'
+  childNodes:
+    main:
+      type: 'TYPO3.Neos:ContentCollection'
+
+
+'Gmedia.News:News':
+  superTypes:
+    'TYPO3.Neos:Document': TRUE
+  childNodes:
+    main:
+      type: 'TYPO3.Neos:ContentCollection'
+      constraints:
+        nodeTypes:
+          '*': false
+          'TYPO3.Neos.NodeTypes:Headline': true
+          'TYPO3.Neos.NodeTypes:Text': true
+          'TYPO3.Neos.NodeTypes:Image': true
+    comments:
+      type: 'TYPO3.Neos:ContentCollection'
+  ui:
+    label: 'News'
+    icon: 'icon-file-text'
+    group: 'news'
+    inspector:
+      groups:
+        news:
+          label: 'Article'
+        newsImage:
+          label: 'Article Image'
+          icon: 'icon-image'
+  properties:
+    isAuthorBeUser:
+      type: boolean
+      ui:
+        label: 'Author is backend user'
+        reloadIfChanged: TRUE
+        inspector:
+          group: 'news'
+    authorName:
+      type: string
+      ui:
+        label: 'Author name'
+        reloadIfChanged: TRUE
+        inspector:
+          group: 'news'
+      validation:
+        'TYPO3.Neos/Validation/NotEmptyValidator': []
+        'TYPO3.Neos/Validation/StringLengthValidator':
+          minimum: 1
+          maximum: 255
+    authorEmail:
+      type: string
+      ui:
+        label: 'Author email'
+        reloadIfChanged: TRUE
+        inspector:
+          group: 'news'
+      validation:
+        'TYPO3.Neos/Validation/EmailAddressValidator': []
+    dateTime:
+      type: DateTime
+      defaultValue: 'now'
+      ui:
+        label: 'Date'
+        reloadIfChanged: TRUE
+        inspector:
+          group: 'news'
+          editorOptions:
+            format: 'd.m.Y H:i'
+      validation:
+        'TYPO3.Neos/Validation/NotEmptyValidator': []
+        'TYPO3.Neos/Validation/DateTimeValidator': []
+    relatedNews:
+      type: references
+      ui:
+        label: 'Related news'
+        reloadIfChanged: TRUE
+        inspector:
+          group: 'news'
+          editorOptions:
+            nodeTypes: ['Gmedia.News:News']
+    tags:
+      type: string
+      ui:
+        label: 'Tags'
+        reloadIfChanged: TRUE
+        inspector:
+          group: 'news'
+      validation:
+        regularExpression:
+          regularExpression: '/[a-zA-Z0-9\,]/'
+    categories:
+      type: references
+      ui:
+        label: 'Categories'
+        reloadIfChanged: TRUE
+        inspector:
+          group: 'news'
+          editorOptions:
+            nodeTypes: ['Gmedia.News:Category']
+    articleImage:
+      type: 'TYPO3\Media\Domain\Model\ImageInterface'
+      ui:
+        label: 'Article Image'
+        reloadPageIfChanged: TRUE
+        inspector:
+          group: 'newsImage'
+
+'Gmedia.News:Common':
+  abstract: TRUE
+  ui:
+    inspector:
+      groups:
+        newsConfiguration:
+          label: 'News configuration'
+          position: 1
+  properties:
+    newsFolder:
+      type: reference
+      ui:
+        label: 'News folder'
+        reloadIfChanged: TRUE
+        inspector:
+          group: 'newsConfiguration'
+          editorOptions:
+            nodeTypes: ['Gmedia.News:Folder']
+    dateFormat:
+      type: string
+      defaultValue: NULL
+      ui:
+        label: 'Date format'
+        reloadIfChanged: TRUE
+        inspector:
+          group: 'newsConfiguration'
+      validation:
+        'TYPO3.Neos/Validation/StringLengthValidator':
+          minimum: 1
+          maximum: 10
+    sortProperty:
+      type: string
+      defaultValue: NULL
+      ui:
+        label: 'Sort by property'
+        reloadIfChanged: TRUE
+        inspector:
+          group: 'newsConfiguration'
+          editor: 'TYPO3.Neos/Inspector/Editors/SelectBoxEditor'
+          editorOptions:
+            placeholder: 'Default'
+            values:
+              '':
+                label: ''
+              'dateTime':
+                label: 'Date'
+              'autherName':
+                label: 'Author name'
+              'title':
+                label: 'Title'
+    sortOrder:
+      type: string
+      defaultValue: NULL
+      ui:
+        label: 'Sort order'
+        reloadIfChanged: TRUE
+        inspector:
+          group: 'newsConfiguration'
+          editor: 'TYPO3.Neos/Inspector/Editors/SelectBoxEditor'
+          editorOptions:
+            placeholder: 'Default'
+            values:
+              '':
+                label: ''
+              'ASC':
+                label: 'Ascending'
+              'DESC':
+                label: 'Descending'
+    thumbnailMaxWidth:
+      type: string
+      defaultValue: NULL
+      ui:
+        label: 'Thumbnail max width'
+        reloadIfChanged: TRUE
+        inspector:
+          group: 'newsConfiguration'
+    thumbnailMaxHeight:
+      type: string
+      defaultValue: NULL
+      ui:
+        label: 'Thumbnail max height'
+        reloadIfChanged: TRUE
+        inspector:
+          group: 'newsConfiguration'
+    filterByCategories:
+      type: references
+      ui:
+        label: 'News in categories'
+        reloadIfChanged: TRUE
+        inspector:
+          group: 'newsConfiguration'
+          editorOptions:
+            nodeTypes: ['Gmedia.News:Category']
+
+'Gmedia.News:Paginated':
+  abstract: TRUE
+  ui:
+    inspector:
+      groups:
+        paginatorConfiguration:
+          label: 'Paginator configuration'
+          position: 2
+  properties:
+    itemsPerPage:
+      type: string
+      defaultValue: NULL
+      ui:
+        label: 'Items per page'
+        reloadIfChanged: TRUE
+        inspector:
+          group: 'paginatorConfiguration'
+      validation:
+        'TYPO3.Neos/Validation/IntegerValidator': []
+    maximumNumberOfLinks:
+      type: string
+      defaultValue: NULL
+      ui:
+        label: 'Maximum number of links'
+        reloadIfChanged: TRUE
+        inspector:
+          group: 'paginatorConfiguration'
+      validation:
+        'TYPO3.Neos/Validation/IntegerValidator': []
+
+'Gmedia.News:List':
+  superTypes:
+    'TYPO3.Neos:Content': TRUE
+    'Gmedia.News:Paginated': TRUE
+    'Gmedia.News:Common': TRUE
+  ui:
+    label: 'News list'
+    icon: 'icon-list'
+    inlineEditable: TRUE
+    group: 'news'
+
+'Gmedia.News:Latest':
+  superTypes:
+    'TYPO3.Neos:Content': TRUE
+    'Gmedia.News:Common': TRUE
+  ui:
+    label: 'News latest'
+    icon: 'icon-list'
+    group: 'news'
+    inlineEditable: TRUE
+  properties:
+    numberOfItems:
+      type: string
+      defaultValue: NULL
+      ui:
+        label: 'Number of items'
+        reloadIfChanged: TRUE
+        inspector:
+          group: 'newsConfiguration'
+      validation:
+        'TYPO3.Neos/Validation/IntegerValidator': []
+
+'Gmedia.News:Menu':
+  abstract: TRUE
+  superTypes:
+    'TYPO3.Neos.NodeTypes:Menu': TRUE
+  properties:
+    newsFolder:
+      type: reference
+      ui:
+        label: 'News folder'
+        reloadIfChanged: TRUE
+        inspector:
+          group: 'options'
+          editorOptions:
+            nodeTypes: ['Gmedia.News:Folder']
+
+'Gmedia.News:CategoryMenu':
+  superTypes:
+    'Gmedia.News:Menu': TRUE
+  ui:
+    label: 'News category menu'
+    icon: 'icon-list'
+    inlineEditable: TRUE
+    group: 'news'
+
+'Gmedia.News:ArchiveMenu':
+  superTypes:
+    'Gmedia.News:Menu': TRUE
+  ui:
+    label: 'News archive menu'
+    icon: 'icon-list'
+    inlineEditable: TRUE
+    group: 'news'

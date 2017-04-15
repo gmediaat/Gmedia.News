@@ -1,0 +1,70 @@
+{namespace neos=TYPO3\Neos\ViewHelpers}
+<neos:contentElement.wrap>
+	<article class="gn-news-detail">
+		<div class="gn-news-detail-header">
+			<neos:contentElement.editable property="title" tag="h1" />
+			<hr class="divider">
+			<f:if condition="{dateTime}">
+				<f:then>
+					<div class="gn-news-detail-meta">
+						<b><span class="entry-date"><f:format.date format="{configuration.dateFormat}">{dateTime}</f:format.date>{f:if(condition: '{authorName}', then: ', {f:translate(id: \'by\', package: \'Gmedia.News\')}: {authorName}', else: '')}</span></b>
+					</div>
+				</f:then>
+			</f:if>
+		</div>
+		<div class="gn-news-detail-content">
+			{main -> f:format.raw()}
+		</div>
+		<hr class="divider">
+		<div class="gn-news-detail-info">
+			<div class="gn-news-detail-info-inner">
+				<f:if condition="{relatedNews}">
+					<f:then>
+						<div class="gn-news-detail-related">
+							<h3><f:translate id="relatedNews" package="Gmedia.News">Ähnliche Artikel</f:translate></h3>
+							<f:for each="{relatedNews}" as="news">
+								<p>
+									<neos:link.node node="{news}">{news.properties.title}</neos:link.node> - <f:format.date format="{configuration.dateFormat}">{news.properties.dateTime}</f:format.date>
+								</p>
+							</f:for>
+						</div>
+					</f:then>
+				</f:if>
+				<f:if condition="{categories}">
+					<f:then>
+						<div class="gn-news-detail-categories">
+							<h3><f:translate id="categories" package="Gmedia.News">Kategorien</f:translate></h3>
+							<f:for each="{categories}" as="category" iteration="catIterator">
+								<span>
+									<neos:link.node node="{category}" class="badge badge-pill badge-default">{category.properties.title}</neos:link.node>
+								</span>
+							</f:for>
+						</div>
+					</f:then>
+					<f:else>
+						<f:if condition="{primaryCategory}">
+							<f:then>
+								<div class="gn-news-detail-categories">
+									<h3><f:translate id="categories" package="Gmedia.News">Kategorien</f:translate></h3>
+									<span>
+										<neos:link.node node="{primaryCategory}">{primaryCategory.properties.title}</neos:link.node>
+									</span>
+								</div>
+							</f:then>
+						</f:if>
+					</f:else>
+				</f:if>
+				<f:if condition="{tags}">
+					<f:then>
+						<div class="gn-news-detail-tags">
+							<h3><f:translate id="tags" package="Gmedia.News">Tags</f:translate></h3>
+							<f:for each="{tags}" as="tag" iteration="badgeIterator">
+		                        <a href="{neos:uri.node(node: newsListNode)}?tag={tag}" class="badge badge-pill badge-default">{tag}</a>
+		   					</f:for>
+						</div>
+					</f:then>
+				</f:if>
+			</div>
+		</div>
+	</article>
+</neos:contentElement.wrap>

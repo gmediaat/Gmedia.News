@@ -1,0 +1,18 @@
+# Folder document shows news list by default from current folder
+prototype(TYPO3.Neos:PrimaryContent).folder {
+	condition = ${q(documentNode).is('[instanceof Gmedia.News:Folder]')}
+	type = 'Gmedia.News:List'
+}
+
+# Category document rendering switch
+prototype(TYPO3.Neos:PrimaryContent).category {
+	condition = ${q(documentNode).is('[instanceof Gmedia.News:Category]')}
+	type = 'Gmedia.News:Category'
+}
+
+# News document rendering switch
+prototype(TYPO3.Neos:PrimaryContent).news {
+	condition = ${q(documentNode).is('[instanceof Gmedia.News:News]')}
+	type = 'Gmedia.News:News'
+}
+

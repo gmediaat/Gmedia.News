@@ -1,0 +1,21 @@
+{namespace neos=TYPO3\Neos\ViewHelpers}
+{namespace ts=TYPO3\TypoScript\ViewHelpers}
+{namespace m=TYPO3\Media\ViewHelpers}
+
+<neos:link.node node="{node}" class="gn-latest-item">
+	<f:if condition="{thumbnailImage}">
+		<div class="gn-latest-image">
+			<img src="{m:uri.image(image:thumbnailImage.nodeData.properties.image)}">
+		</div>
+	</f:if>
+	<h3 class="gn-latest-headline">{title}</h3>
+	<!--<p>
+		<f:if condition="{dateTime}">
+			<span><i><f:format.date format="{configuration.dateFormat}">{dateTime}</f:format.date></i></span>
+		</f:if>
+		<span>{f:if(condition: '{authorName}', then: ', {f:translate(id: \'by\', package: \'Gmedia.News\')}: {authorName}', else: '')}</span>
+		<br />
+		{teaserText -> f:format.stripTags() -> f:format.crop(maxCharacters: 100, append: '...')}
+		<f:translate id="readMore" package="Gmedia.News">Read more</f:translate>
+	</p>-->
+</neos:link.node>
