@@ -1,21 +1,21 @@
 <?php
-namespace Gmedia\News\TypoScript;
+namespace Gmedia\News\Fusion;
 /*                                                                        *
  * This script belongs to the TYPO3 Flow package "Gmedia.News".           *
  *                                                                        *
  *                                                                        */
 
-use TYPO3\Flow\Annotations as Flow;
-use TYPO3\Flow\Core\Bootstrap;
-use TYPO3\Flow\Mvc\ActionRequest;
-use TYPO3\TypoScript\TypoScriptObjects\AbstractTypoScriptObject;
+use Neos\Flow\Annotations as Flow;
+use Neos\Flow\Core\Bootstrap;
+use Neos\Flow\Mvc\ActionRequest;
+use Neos\Fusion\FusionObjects\AbstractFusionObject;
 
 /**
  * Typoscript Response Manupulator
  *
  * @api
  */
-class ResponseManipulatorImplementation extends AbstractTypoScriptObject {
+class ResponseManipulatorImplementation extends AbstractFusionObject {
 
 	/**
 	 * Inject bootstrap

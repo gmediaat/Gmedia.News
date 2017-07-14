@@ -1,15 +1,15 @@
 <?php
-namespace Gmedia\News\TypoScript\Eel\FlowQueryOperations;
+namespace Gmedia\News\Fusion\Eel\FlowQueryOperations;
 
 /*                                                                        *
  * This script belongs to the TYPO3 Flow package "Lelesys.News".          *
  *                                                                        *
  *                                                                        */
 
-use TYPO3\Eel\FlowQuery\Operations\AbstractOperation;
-use TYPO3\Flow\Annotations as Flow;
-use TYPO3\TYPO3CR\Domain\Model\NodeInterface;
-use TYPO3\Eel\FlowQuery\FlowQuery;
+use Neos\Eel\FlowQuery\Operations\AbstractOperation;
+use Neos\Flow\Annotations as Flow;
+use Neos\ContentRepository\Domain\Model\NodeInterface;
+use Neos\Eel\FlowQuery\FlowQuery;
 
 /**
  * Extended EEL property() operation for News
@@ -45,7 +45,7 @@ class PropertyOperation extends AbstractOperation {
 	 * @return boolean
 	 */
 	public function canEvaluate($context) {
-		return (isset($context[0]) && ($context[0] instanceof NodeInterface) && $context[0]->getNodeType()->isOfType('Lelesys.News:List'));
+		return (isset($context[0]) && ($context[0] instanceof NodeInterface) && $context[0]->getNodeType()->isOfType('Gmedia.News:List'));
 	}
 
 	/**
@@ -57,7 +57,7 @@ class PropertyOperation extends AbstractOperation {
 	 */
 	public function evaluate(FlowQuery $flowQuery, array $arguments) {
 		if (!isset($arguments[0]) || empty($arguments[0])) {
-			throw new \TYPO3\Eel\FlowQuery\FlowQueryException('property_array() does not support returning all attributes yet', 1332492263);
+			throw new \Neos\Eel\FlowQuery\FlowQueryException('property_array() does not support returning all attributes yet', 1332492263);
 		} else {
 			$context = $flowQuery->getContext();
 			$propertyPath = $arguments[0];

@@ -14,7 +14,7 @@ Neos:
 
   Fusion:
     defaultContext:
-      NewsConfiguration: 'Gmedia\News\TypoScript\Eel\Helper\ConfigurationHelper'
+      NewsConfiguration: 'Gmedia\News\Fusion\Eel\Helper\ConfigurationHelper'
 
 ##
 # The configuration for news plugin
