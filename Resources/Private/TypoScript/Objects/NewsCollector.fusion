@@ -1,4 +1,4 @@
-prototype(Gmedia.News:NewsCollector) < prototype(TYPO3.TypoScript:Value) {
+prototype(Gmedia.News:NewsCollector) < prototype(Neos.TypoScript:Value) {
     value = ${q(newsFolderNode).children('[instanceof Gmedia.News:News]').get()}
 
     # Filter and sorting

@@ -1,18 +1,18 @@
 ##
 # Auto include typoscript configuration
 #
-TYPO3:
+Neos:
   Neos:
     nodeTypes:
       groups:
         news:
           position: 'end'
           label: 'News'
-    typoScript:
+    fusion:
       autoInclude:
         'Gmedia.News': TRUE
 
-  TypoScript:
+  Fusion:
     defaultContext:
       NewsConfiguration: 'Gmedia\News\TypoScript\Eel\Helper\ConfigurationHelper'
 

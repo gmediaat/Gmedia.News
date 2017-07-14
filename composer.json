@@ -1,8 +1,8 @@
 {
 	"name": "gmedia/news",
-	"type": "typo3-flow-plugin",
-	"description": "News plugin for TYPO3 Neos",
-	"version": "3.0.0",
+	"type": "neos-plugin",
+	"description": "News plugin for Neos",
+	"version": "4.0.0",
 	"license": "GPL-3.0+",
 	"authors": [
 		{
@@ -14,11 +14,11 @@
 		}
 	],
 	"require": {
-		"typo3/neos": "*"
+		"neos/neos": "*"
 	},
 	"autoload": {
-		"psr-0": {
-			"Gmedia\\News": "Classes"
+		"psr-4": {
+			"Gmedia\\News\\": "Classes"
 		}
 	}
 }
