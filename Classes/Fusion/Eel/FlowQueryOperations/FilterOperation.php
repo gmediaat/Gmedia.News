@@ -1,18 +1,18 @@
 <?php
-namespace Gmedia\News\TypoScript\Eel\FlowQueryOperations;
+namespace Gmedia\News\Fusion\Eel\FlowQueryOperations;
 
 /*                                                                        *
  * This script belongs to the TYPO3 Flow package "Lelesys.News".          *
  *                                                                        *
  *                                                                        */
 
-use TYPO3\Flow\Annotations as Flow;
-use TYPO3\TYPO3CR\Domain\Model\NodeInterface;
+use Neos\Flow\Annotations as Flow;
+use Neos\ContentRepository\Domain\Model\NodeInterface;
 
 /**
  * Extended EEL filter() operation for News
  */
-class FilterOperation extends \TYPO3\TYPO3CR\Eel\FlowQueryOperations\FilterOperation {
+class FilterOperation extends \Neos\ContentRepository\Eel\FlowQueryOperations\FilterOperation {
 	/**
 	 * {@inheritdoc}
 	 *
@@ -32,17 +32,17 @@ class FilterOperation extends \TYPO3\TYPO3CR\Eel\FlowQueryOperations\FilterOpera
 	 * @return boolean TRUE if the operation can be applied onto the $context, FALSE otherwise
 	 */
 	public function canEvaluate($context) {
-		return (isset($context[0]) && ($context[0] instanceof NodeInterface) && $context[0]->getNodeType()->isOfType('Lelesys.News:News'));
+		return (isset($context[0]) && ($context[0] instanceof NodeInterface) && $context[0]->getNodeType()->isOfType('Gmedia.News:News'));
 	}
 
 	/**
 	 * {@inheritdoc}
 	 *
-	 * @param \TYPO3\Eel\FlowQuery\FlowQuery $flowQuery
+	 * @param \Neos\Eel\FlowQuery\FlowQuery $flowQuery
 	 * @param array $arguments
 	 * @return void
 	 */
-	public function evaluate(\TYPO3\Eel\FlowQuery\FlowQuery $flowQuery, array $arguments) {
+	public function evaluate(\Neos\Eel\FlowQuery\FlowQuery $flowQuery, array $arguments) {
 		if (isset($arguments[1]) && is_string($arguments[1]) && !empty($arguments[1])) {
 			$this->dateTimeFormat = $arguments[1];
 		}
