@@ -19,7 +19,7 @@ prototype(Gmedia.News:List) {
 	configuration = ${configuration}
 
 	# TODO - remove the condition if Content
-	#newsCollection = ${q(node).is('[instanceof TYPO3.Neos:Content]') ? q(newsFolderNode).children('[instanceof Gmedia.News:News]').get() : newsFolderNode.children('[instanceof Gmedia.News:News]').get()}
+	#newsCollection = ${q(node).is('[instanceof Neos.Neos:Content]') ? q(newsFolderNode).children('[instanceof Gmedia.News:News]').get() : newsFolderNode.children('[instanceof Gmedia.News:News]').get()}
 	newsCollection = ${q(newsFolderNode).children('[instanceof Gmedia.News:News]').get()}
 
 	# Filter and sorting

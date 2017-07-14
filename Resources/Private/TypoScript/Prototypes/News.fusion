@@ -8,17 +8,17 @@ prototype(Gmedia.News:News) {
 
 	# first image found in the news content becomes the thumbnail image to be shown in the
 	# list and latest views
-	thumbnailImage = ${q(node).find('[instanceof TYPO3.Neos.NodeTypes:Image],[instanceof TYPO3.Neos.NodeTypes:TextWithImage]').first().get(0)}
+	thumbnailImage = ${q(node).find('[instanceof Neos.Neos.NodeTypes:Image],[instanceof Neos.Neos.NodeTypes:TextWithImage]').first().get(0)}
 	
 	head.stylesheets.siteHeader {
 		backgroundImage = ${this.thumbnailImage}
 	}
 
-	main = TYPO3.Neos:ContentCollection
+	main = Neos.Neos:ContentCollection
 	main.nodePath = 'main'
 
 	# Text from the first text node is taken as short description shown on list/latest views
-	teaserText = ${q(node).children('main').children('[instanceof TYPO3.Neos.NodeTypes:Text]').property('text')}
+	teaserText = ${q(node).children('main').children('[instanceof Neos.Neos.NodeTypes:Text]').property('text')}
 
 	# split tags with comma seperated
 	tags = ${q(node).property('tags') != null && q(node).property('tags') != '' ? String.split(q(node).property('tags'), ',') : null}
@@ -28,16 +28,16 @@ prototype(Gmedia.News:News) {
 	@override.newsListNode = ${q(node).closest('[instanceof Gmedia.News:Folder]').get(0)}
 	newsListNode = ${newsListNode}
 	
-	prototype(TYPO3.Neos.NodeTypes:Text) {
-		attributes.class = TYPO3.TypoScript:RawArray {
+	prototype(Neos.Neos.NodeTypes:Text) {
+		attributes.class = Neos.TypoScript:RawArray {
 			class1 = 'gn-news-detail-text'
 		}
 	}
 	
-	firstTextElement = ${q(node).children('main').children('[instanceof TYPO3.Neos.NodeTypes:Text]').get()}
+	firstTextElement = ${q(node).children('main').children('[instanceof Neos.Neos.NodeTypes:Text]').get()}
 	firstTextElement.attributes.class = 'lead'
 	
-	prototype(TYPO3.Neos.NodeTypes:Image) {
+	prototype(Neos.Neos.NodeTypes:Image) {
 		attributes.class = 'gn-news-detail-image'
 	}
 }

@@ -1,0 +1,14 @@
+# Prototypes
+include: Prototypes/ArchiveMenu.fusion
+include: Prototypes/CategoryMenu.fusion
+include: Prototypes/News.fusion
+include: Prototypes/List.fusion
+include: Prototypes/Category.fusion
+include: Prototypes/Latest.fusion
+include: Prototypes/ResponseManipulator.fusion
+
+# Objects
+include: Objects/Rss.fusion
+
+# Defaults for switching etc.
+include: DefaultTypoScript.fusion
