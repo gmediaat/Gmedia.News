@@ -11,4 +11,4 @@ include: Prototypes/ResponseManipulator.fusion
 include: Objects/Rss.fusion
 
 # Defaults for switching etc.
-include: DefaultTypoScript.fusion
+include: DefaultFusion.fusion

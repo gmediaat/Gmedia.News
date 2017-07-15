@@ -1,13 +1,13 @@
 # The news meta data
-prototype(Gmedia.News:MetaTags) < prototype(Neos.TypoScript:Array) {
-	keywordsMetaTag = Neos.TypoScript:Tag {
+prototype(Gmedia.News:MetaTags) < prototype(Neos.Fusion:Array) {
+	keywordsMetaTag = Neos.Fusion:Tag {
 		tagName = 'meta'
 		attributes {
 			name = 'keywords'
 			content = ${q(node).property('metaKeywords') != null ? q(node).property('metaKeywords') : ''}
 		}
 	}
-	descriptionMetaTag = Neos.TypoScript:Tag {
+	descriptionMetaTag = Neos.Fusion:Tag {
 		tagName = 'meta'
 		attributes {
 			name = 'description'
