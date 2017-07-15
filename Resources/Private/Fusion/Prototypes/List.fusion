@@ -47,7 +47,7 @@ prototype(Gmedia.News:List) {
 	# this renders a single item inside the list
 	newsItem = Gmedia.News:News
 	newsItem {
-		templatePath = 'resource://Gmedia.News/Private/Templates/TypoScriptObjects/ListItem.html'
+		templatePath = 'resource://Gmedia.News/Private/Templates/FusionObjects/ListItem.html'
 	}
 
 	# uncached the list view

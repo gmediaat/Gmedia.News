@@ -8,7 +8,7 @@ prototype(Gmedia.News:Latest) < prototype(Gmedia.News:List) {
 	# this renders a single item inside the latest view
 	newsItem = Gmedia.News:News
 	newsItem {
-		templatePath = 'resource://Gmedia.News/Private/Templates/TypoScriptObjects/LatestItem.html'
+		templatePath = 'resource://Gmedia.News/Private/Templates/FusionObjects/LatestItem.html'
 	}
 
 	# show only few nodes

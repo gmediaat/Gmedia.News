@@ -47,9 +47,9 @@
       constraints:
         nodeTypes:
           '*': false
-          'Neos.Neos.NodeTypes:Headline': true
-          'Neos.Neos.NodeTypes:Text': true
-          'Neos.Neos.NodeTypes:Image': true
+          'Neos.NodeTypes:Headline': true
+          'Neos.NodeTypes:Text': true
+          'Neos.NodeTypes:Image': true
     comments:
       type: 'Neos.Neos:ContentCollection'
   ui:
