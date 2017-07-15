@@ -1,6 +1,6 @@
 {namespace neos=Neos\Neos\ViewHelpers}
 {namespace neoscr=Neos\ContentRepository\ViewHelpers}
-{namespace ts=Neos\Fusion\ViewHelpers}
+{namespace fs=Neos\Fusion\ViewHelpers}
 <f:if condition="{newsCollection}">
 <section class="gn-latest">
 	<div class="gn-latest-inner">
@@ -12,7 +12,7 @@
 		<neoscr:widget.paginate nodes="{newsCollection}" as="paginatedNewsItems" widgetId="{node.name}" configuration="{configuration.pagination}">
 			<div class="gn-latest-items">
 				<f:for each="{paginatedNewsItems}" as="nItem">
-					<ts:render path="newsItem" context="{node: nItem, inputConfiguration: configuration}" />
+					<fs:render path="newsItem" context="{node: nItem, inputConfiguration: configuration}" />
 				</f:for>
 			</div>
 		</neoscr:widget.paginate>

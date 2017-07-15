@@ -8,7 +8,7 @@ prototype(Gmedia.News:News) {
 
 	# first image found in the news content becomes the thumbnail image to be shown in the
 	# list and latest views
-	thumbnailImage = ${q(node).find('[instanceof Neos.Neos.NodeTypes:Image],[instanceof Neos.Neos.NodeTypes:TextWithImage]').first().get(0)}
+	thumbnailImage = ${q(node).find('[instanceof Neos.NodeTypes:Image],[instanceof Neos.NodeTypes:TextWithImage]').first().get(0)}
 	
 	head.stylesheets.siteHeader {
 		backgroundImage = ${this.thumbnailImage}
@@ -28,16 +28,16 @@ prototype(Gmedia.News:News) {
 	@override.newsListNode = ${q(node).closest('[instanceof Gmedia.News:Folder]').get(0)}
 	newsListNode = ${newsListNode}
 	
-	prototype(Neos.Neos.NodeTypes:Text) {
+	prototype(Neos.NodeTypes:Text) {
 		attributes.class = Neos.TypoScript:RawArray {
 			class1 = 'gn-news-detail-text'
 		}
 	}
 	
-	firstTextElement = ${q(node).children('main').children('[instanceof Neos.Neos.NodeTypes:Text]').get()}
+	firstTextElement = ${q(node).children('main').children('[instanceof Neos.NodeTypes:Text]').get()}
 	firstTextElement.attributes.class = 'lead'
 	
-	prototype(Neos.Neos.NodeTypes:Image) {
+	prototype(Neos.NodeTypes:Image) {
 		attributes.class = 'gn-news-detail-image'
 	}
 }
