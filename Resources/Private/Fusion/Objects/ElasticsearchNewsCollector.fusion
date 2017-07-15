@@ -1,7 +1,7 @@
 #
 # Collects news items using a Query against the Elasticsearch index for the website
 #
-prototype(Gmedia.News:ElasticsearchNewsCollector) < prototype(Neos.TypoScript:Value) {
+prototype(Gmedia.News:ElasticsearchNewsCollector) < prototype(Neos.Fusion:Value) {
     categoryAndTagFilter = Gmedia.News:ElasticsearchCategoryAndTagFilter
     dateFilter = Gmedia.News:ElasticsearchDateFilter
 
@@ -17,8 +17,8 @@ prototype(Gmedia.News:ElasticsearchNewsCollector) < prototype(Neos.TypoScript:Va
 #
 # returns a raw array to use for category / tag filtering
 #
-prototype(Gmedia.News:ElasticsearchCategoryAndTagFilter) < prototype(Neos.TypoScript:Value) {
-    value = Neos.TypoScript:RawArray {
+prototype(Gmedia.News:ElasticsearchCategoryAndTagFilter) < prototype(Neos.Fusion:Value) {
+    value = Neos.Fusion:RawArray {
         catgeories = ${q(node).is('[instanceof Gmedia.News:List]') ? (q(node).property('filterByCategories') ? q(node).property('filterByCategories') : null) : null}
         tags = ${request.arguments.tag}
     }
@@ -27,8 +27,8 @@ prototype(Gmedia.News:ElasticsearchCategoryAndTagFilter) < prototype(Neos.TypoSc
 #
 # returns a raw array to use for date filtering
 #
-prototype(Gmedia.News:ElasticsearchDateFilter) < prototype(Neos.TypoScript:Value) {
-    filterByDateStart = Neos.TypoScript:Case {
+prototype(Gmedia.News:ElasticsearchDateFilter) < prototype(Neos.Fusion:Value) {
+    filterByDateStart = Neos.Fusion:Case {
         yearAndMonth {
             condition = ${request.arguments.year && request.arguments.month}
             renderer = ${Date.parse(request.arguments.month + '/' + request.arguments.year, 'm/Y')}
@@ -45,8 +45,8 @@ prototype(Gmedia.News:ElasticsearchDateFilter) < prototype(Neos.TypoScript:Value
     @context.filterByDateStart = ${this.filterByDateStart}
     @context.filterByDateEnd = ${request.arguments.month ? Date.add(this.filterByDateStart, 'P1M') : Date.add(this.filterByDateStart, 'P1Y')}
 
-    value = Neos.TypoScript:RawArray {
-        dateTime = Neos.TypoScript:RawArray {
+    value = Neos.Fusion:RawArray {
+        dateTime = Neos.Fusion:RawArray {
             gte = ${Date.format(filterByDateStart, 'm/Y')}
             lt = ${Date.format(filterByDateEnd, 'm/Y')}
             format = 'MM/yyyy'

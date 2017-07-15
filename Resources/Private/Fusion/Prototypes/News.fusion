@@ -29,7 +29,7 @@ prototype(Gmedia.News:News) {
 	newsListNode = ${newsListNode}
 	
 	prototype(Neos.NodeTypes:Text) {
-		attributes.class = Neos.TypoScript:RawArray {
+		attributes.class = Neos.Fusion:RawArray {
 			class1 = 'gn-news-detail-text'
 		}
 	}
