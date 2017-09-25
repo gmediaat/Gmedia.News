@@ -45,7 +45,7 @@ class PropertyOperation extends AbstractOperation {
 	 * @return boolean
 	 */
 	public function canEvaluate($context) {
-		return (isset($context[0]) && ($context[0] instanceof NodeInterface) && $context[0]->getNodeType()->isOfType('Lelesys.News:List'));
+		return (isset($context[0]) && ($context[0] instanceof NodeInterface) && $context[0]->getNodeType()->isOfType('Gmedia.News:List'));
 	}
 
 	/**

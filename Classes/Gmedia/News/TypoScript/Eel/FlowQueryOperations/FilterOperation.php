@@ -32,7 +32,7 @@ class FilterOperation extends \TYPO3\TYPO3CR\Eel\FlowQueryOperations\FilterOpera
 	 * @return boolean TRUE if the operation can be applied onto the $context, FALSE otherwise
 	 */
 	public function canEvaluate($context) {
-		return (isset($context[0]) && ($context[0] instanceof NodeInterface) && $context[0]->getNodeType()->isOfType('Lelesys.News:News'));
+		return (isset($context[0]) && ($context[0] instanceof NodeInterface) && $context[0]->getNodeType()->isOfType('Gmedia.News:News'));
 	}
 
 	/**
