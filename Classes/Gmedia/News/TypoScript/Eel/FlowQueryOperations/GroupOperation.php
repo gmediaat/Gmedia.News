@@ -63,6 +63,8 @@ class GroupOperation extends  AbstractOperation {
 				}
 			}
 		}
+		ksort($groupedItems);
+		$groupedItems = array_reverse($groupedItems, true);
 		$flowQuery->setContext($groupedItems);
 	}
 }
