@@ -140,6 +140,10 @@
         reloadPageIfChanged: TRUE
         inspector:
           group: 'newsImage'
+    xmlSitemapChangeFrequency:
+      defaultValue: 'weekly'
+    xmlSitemapPriority:
+      defaultValue: 0.3
 
 'Gmedia.News:Common':
   abstract: TRUE
