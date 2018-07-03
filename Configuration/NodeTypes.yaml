@@ -299,8 +299,6 @@
 
 'Gmedia.News:Menu':
   abstract: TRUE
-  superTypes:
-    'Neos.Neos:Menu': TRUE
   properties:
     newsFolder:
       type: reference
