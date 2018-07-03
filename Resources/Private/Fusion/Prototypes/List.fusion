@@ -1,5 +1,5 @@
 # News list
-prototype(Gmedia.News:List) {
+prototype(Gmedia.News:List) < prototype(Neos.Neos:Content) {
 	# default templatePath is below which is set automatically by Neos.
 	# to change template override templatePath
 	# templatePath = 'resource://Gmedia.News/Private/Templates/NodeTypes/List.html'

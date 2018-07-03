@@ -5,7 +5,7 @@
 <div>
 	<f:if condition="{thumbnailImage}">
 		<figure class="Neos-neos-alignment-left">
-			<m:image asset="{thumbnailImage.properties.image}" maximumWidth="{configuration.thumbnailMaxWidth}" maximumHeight="{configuration.thumbnailMaxHeight}" alt="{thumbnailImage.properties.alternativeText}" />
+			<m:image image="{thumbnailImage.properties.image}" maximumWidth="{configuration.thumbnailMaxWidth}" maximumHeight="{configuration.thumbnailMaxHeight}" alt="{thumbnailImage.properties.alternativeText}" />
 		</figure>
 	</f:if>
 	<h5><neos:link.node node="{node}">{title}</neos:link.node></h5>
@@ -17,7 +17,7 @@
 		<br />
 		{teaserText -> f:format.stripTags() -> f:format.crop(maxCharacters: 100, append: '...')}
 		<neos:link.node node="{node}">
-			<f:translate id="readMore" package="Lelesys.News">Read more</f:translate>
+			<f:translate id="readMore" package="Gmedia.News">Read more</f:translate>
 		</neos:link.node>
 	</p>
 </div>

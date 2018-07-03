@@ -300,7 +300,7 @@
 'Gmedia.News:Menu':
   abstract: TRUE
   superTypes:
-    'Neos.NodeTypes:Menu': TRUE
+    'Neos.Neos:Menu': TRUE
   properties:
     newsFolder:
       type: reference

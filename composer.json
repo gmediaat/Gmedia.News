@@ -2,7 +2,7 @@
 	"name": "gmedia/news",
 	"type": "neos-plugin",
 	"description": "News plugin for Neos",
-	"version": "4.0.3",
+	"version": "5.0.0",
 	"license": "GPL-3.0+",
 	"authors": [
 		{
@@ -14,7 +14,7 @@
 		}
 	],
 	"require": {
-		"neos/neos": "*"
+		"neos/neos": "^4.0.0"
 	},
 	"autoload": {
 		"psr-4": {
