@@ -21,7 +21,7 @@ prototype(Gmedia.News:News) < prototype(Neos.Neos:Document) {
 	teaserText = ${q(node).children('main').children('[instanceof Neos.NodeTypes:Text]').property('text')}
 
 	# split tags with comma seperated
-	tags = ${q(node).property('tags') != null && q(node).property('tags') != '' ? String.split(q(node).property('tags'), ',') : null}
+	tags = ${String.length( q(node).property('tags') ) > 0 ? String.split(q(node).property('tags'), ',') : null}
 
 	# the node where the list view is presented
 	# this can be overridden to change the different news list view
