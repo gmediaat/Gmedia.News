@@ -1,0 +1,7 @@
+prototype(Gmedia.News:Components.Latest) < prototype(Gmedia.News:Components.List) {
+
+    renderer.listCollection.itemRenderer {
+        type = ${Configuration.setting('Gmedia.News.renderer.latestItem')}
+    }
+
+}

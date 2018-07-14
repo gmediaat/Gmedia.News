@@ -1,5 +1,5 @@
 # News list
-prototype(Gmedia.News:List) < prototype(Neos.Neos:Content) {
+prototype(Gmedia.News:List) < prototype(Neos.Neos:ContentComponent) {
 	# default templatePath is below which is set automatically by Neos.
 	# to change template override templatePath
 	# templatePath = 'resource://Gmedia.News/Private/Templates/NodeTypes/List.html'
@@ -27,6 +27,7 @@ prototype(Gmedia.News:List) < prototype(Neos.Neos:Content) {
 	@override.filterByTag = ${request.arguments.tag}
 	@override.filterByYear = ${request.arguments.year}
 	@override.filterByMonth = ${request.arguments.month}
+    @override.currentPaginationPage = ${request.arguments.page ? request.arguments.page : 1}
 
 	# 1. filter the news collection by one or many categories if applicable
 	# this internally uses the extended filter() operation
@@ -44,10 +45,12 @@ prototype(Gmedia.News:List) < prototype(Neos.Neos:Content) {
 	# sort nodes
     newsCollection.@process.sort = ${q(value).count() > 0 ? q(value).sort(configuration.sortProperty, configuration.sortOrder).get() : value}
 
-	# this renders a single item inside the list
-	newsItem = Gmedia.News:News
-	newsItem {
-		templatePath = 'resource://Gmedia.News/Private/Templates/FusionObjects/ListItem.html'
+    newsCollection.@process.pagination = ${configuration.pagination.itemsPerPage > 0 ? q(value).slice((1 - currentPaginationPage ) * configuration.pagination.itemsPerPage, configuration.pagination.itemsPerPage) : value}
+
+	renderer = Neos.Fusion:Renderer {
+        type = ${Configuration.setting('Gmedia.News.renderer.list')}
+		element.newsCollection = ${props.newsCollection}
+        element.configuration = ${props.configuration}
 	}
 
 	# uncached the list view

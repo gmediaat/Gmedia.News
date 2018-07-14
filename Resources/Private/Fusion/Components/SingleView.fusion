@@ -1,0 +1,22 @@
+prototype(Gmedia.News:Components.SingleView) < prototype(Neos.Fusion:Component) {
+
+    title = Neos.Neos:Editable {
+        property = 'title'
+    }
+
+    renderer = afx`
+    <article class="gn-news-detail">
+		<div class="gn-news-detail-header">
+			<h1>{props.title}</h1>
+			<hr class="divider" />
+
+		</div>
+		<div class="gn-news-detail-content">
+			{props.content}
+		</div>
+		<hr class="divider" />
+
+	</article>
+    `
+
+}

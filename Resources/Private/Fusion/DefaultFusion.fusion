@@ -13,6 +13,6 @@ prototype(Neos.Neos:PrimaryContent).category {
 # News document rendering switch
 prototype(Neos.Neos:PrimaryContent).news {
 	condition = ${q(documentNode).is('[instanceof Gmedia.News:News]')}
-	type = 'Gmedia.News:News'
+	type = 'Gmedia.News:Content.News'
 }
 

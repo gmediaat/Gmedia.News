@@ -1,14 +1,22 @@
-# Prototypes
-include: Prototypes/ArchiveMenu.fusion
-include: Prototypes/CategoryMenu.fusion
-include: Prototypes/News.fusion
-include: Prototypes/List.fusion
-include: Prototypes/Category.fusion
-include: Prototypes/Latest.fusion
-include: Prototypes/ResponseManipulator.fusion
+include: Components/**/*.fusion
+include: Prototypes/**/*.fusion
+include: Objects/**/*.fusion
 
-# Objects
-include: Objects/Rss.fusion
+# Folder document shows news list by default from current folder
+prototype(Neos.Neos:PrimaryContent).folder {
+    condition = ${q(documentNode).is('[instanceof Gmedia.News:Folder]')}
+    type = 'Gmedia.News:List'
+}
 
-# Defaults for switching etc.
-include: DefaultFusion.fusion
+# Category document rendering switch
+prototype(Neos.Neos:PrimaryContent).category {
+    condition = ${q(documentNode).is('[instanceof Gmedia.News:Category]')}
+    type = 'Gmedia.News:Category'
+}
+
+# News document rendering switch
+prototype(Neos.Neos:PrimaryContent).news {
+    condition = ${q(documentNode).is('[instanceof Gmedia.News:News]')}
+    type = 'Gmedia.News:Content.News'
+}
+

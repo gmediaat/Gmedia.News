@@ -1,0 +1,65 @@
+prototype(Gmedia.News:Components.Pagination) < prototype(Neos.Fusion:Component) {
+    @styleguide {
+        title = 'Pagination'
+        props {
+            current = 12
+            start = 8
+        }
+        end = 16
+        last = 25
+        baseUri = 'http://www.example.com'
+    }
+
+
+    # first number to be rendererd (if greater than 1 "first" is shown)
+    start = 1
+
+    # last page number to be rendered
+    end = 1
+
+    # number to highloght as current
+    current = ${String.toInteger(request.arguments.page)}
+
+    # last possible number (used for "last" if greater than end)
+    last = 1
+
+    # prototype to render the link, the prototype gets the attribute "page" passed
+    baseUri = null
+
+    renderer = afx`
+        <div class="page-navigation row"
+            @if.isPaginationNeeded={props.last > 1} >
+            <div class="col-xs-12">
+                <ul class="nav nav-pills">
+
+                    <li class="prev" @if.shall={props.current > 1} >
+                        <a href={props.baseUri + '?page=' + (props.current - 1)}>prev</a>
+                    </li>
+
+                    <li class="first" @if.shall={props.start > 1}>
+                        <a href={props.baseUri + '?page=1'}>1</a>
+                    </li>
+
+                    <li @if.shall={props.start > 2}>...</li>
+
+                    <Neos.Fusion:Collection collection={Array.range(props.start, props.end)} itemName="page" @children="itemRenderer">
+                        <li class={(props.current == page) ? 'current': ''}>
+                            <a href={props.baseUri + '?page=' + page}>{page}</a>
+                        </li>
+                    </Neos.Fusion:Collection>
+
+                    <li @if.shall={props.end < (props.last - 1)}>...</li>
+
+                    <li  class="last" @if.shall={props.end < props.last}>
+                        <a href={props.baseUri + '?page=' + props.last}>1</a>
+                    </li>
+
+                    <li class="next" @if.shall={props.current < props.last} >
+                        <a href={props.baseUri + '?page=' + (String.toInteger(props.current) + 1)}>next</a>
+                    </li>
+
+                </ul>
+            </div>
+        </div>
+    `
+}

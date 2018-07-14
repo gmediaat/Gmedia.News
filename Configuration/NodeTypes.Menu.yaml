@@ -1,0 +1,20 @@
+'Gmedia.News:Menu':
+  abstract: TRUE
+  ui:
+    inspector:
+      groups:
+        menuConfiguration:
+          label: 'Menu configuration'
+          position: 1
+  superTypes:
+    'Neos.Neos:Content': true
+  properties:
+    newsFolder:
+      type: reference
+      ui:
+        label: 'News folder'
+        reloadIfChanged: TRUE
+        inspector:
+          group: 'menuConfiguration'
+          editorOptions:
+            nodeTypes: ['Gmedia.News:Folder']

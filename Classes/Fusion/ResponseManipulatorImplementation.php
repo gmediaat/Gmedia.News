@@ -1,7 +1,7 @@
 <?php
 namespace Gmedia\News\Fusion;
 /*                                                                        *
- * This script belongs to the TYPO3 Flow package "Gmedia.News".           *
+ * This script belongs to the Flow package "Gmedia.News".           *
  *                                                                        *
  *                                                                        */
 
@@ -11,7 +11,7 @@ use Neos\Flow\Mvc\ActionRequest;
 use Neos\Fusion\FusionObjects\AbstractFusionObject;
 
 /**
- * Typoscript Response Manupulator
+ * Fusion Response Manupulator
  *
  * @api
  */
@@ -35,4 +35,4 @@ class ResponseManipulatorImplementation extends AbstractFusionObject {
 		$response->setHeader('Content-Type', 'application/xml');
 	}
 
-} 
+}
