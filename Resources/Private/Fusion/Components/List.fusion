@@ -1,12 +1,9 @@
 prototype(Gmedia.News:Components.List) < prototype(Neos.Fusion:Component) {
 
-    collectionClass = Neos.Fusion:RawArray {
-		baseClass = 'row'
-	}
+    collectionClass = 'row'
 
-	itemClass = Neos.Fusion:RawArray {
-		baseClass = 'col-xs-12 col-md-6'
-	}
+	itemClass = 'col-xs-12 col-md-6'
+	itemRenderer = ${Configuration.setting('Gmedia.News.renderer.listItem')}
 
     renderer = afx`
         <Neos.Fusion:Augmenter class={props.collectionClass}>
@@ -19,7 +16,7 @@ prototype(Gmedia.News:Components.List) < prototype(Neos.Fusion:Component) {
                 @if.has={props.newsCollection}>
                 <Neos.Fusion:Augmenter class={props.itemClass}>
                     <Neos.Fusion:Renderer
-                    type={Configuration.setting('Gmedia.News.renderer.listItem')}
+                    type={props.itemRenderer}
                     element.node={newsItem}
                     element.configuration={props.configuration} />
                 </Neos.Fusion:Augmenter>
