@@ -1,8 +1,6 @@
 prototype(Gmedia.News:News) < prototype(Neos.Neos:ContentComponent) {
 
-	renderer = Gmedia.Kreft:BlogArticlePage {
-
-	}
+	renderType = ''
 
 	@override.configuration = ${inputConfiguration ? inputConfiguration : Configuration.setting('Gmedia.News.view.single')}
 	@override.configuration.@process.mergeConfiguration = ${inputConfiguration ? value : NewsConfiguration.mergeWithNodeProperties(value, node)}
@@ -41,5 +39,9 @@ prototype(Gmedia.News:News) < prototype(Neos.Neos:ContentComponent) {
 
 	prototype(Neos.NodeTypes:Image) {
 		attributes.class = 'gn-news-detail-image'
+	}
+
+	renderer = Neos.Fusion:Renderer {
+		type = ${props.renderType}
 	}
 }

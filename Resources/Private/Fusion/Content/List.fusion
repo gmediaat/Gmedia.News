@@ -1,6 +1,8 @@
 # News list
 prototype(Gmedia.News:List) < prototype(Neos.Neos:ContentComponent) {
 
+	renderType = 'Gmedia.News:Component.List'
+
 	# newsFolder is read from current node's newsFolder property if exists
 	# otherwise the closest Folder node is selected
 	@context.newsFolderNode = ${q(node).property('newsFolder') != null ? q(node).property('newsFolder') : q(node).closest('[instanceof Gmedia.News:Folder]')}
@@ -47,7 +49,7 @@ prototype(Gmedia.News:List) < prototype(Neos.Neos:ContentComponent) {
 	// newsCollection.@process.pagination = ${configuration.pagination.itemsPerPage > 0 ? q(value).slice((currentPaginationPage - 1) * configuration.pagination.itemsPerPage, configuration.pagination.itemsPerPage).get() : value}
 
 	renderer = Neos.Fusion:Renderer {
-		type = 'Gmedia.News:Component.List'
+		type = ${props.renderType}
 		element.newsCollection = ${props.newsCollection}
 		element.configuration = ${props.configuration}
 	}

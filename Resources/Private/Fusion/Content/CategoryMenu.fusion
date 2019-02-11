@@ -3,9 +3,10 @@ prototype(Gmedia.News:CategoryMenu) < prototype(Neos.Neos:ContentComponent) {
 	startingPoint = ${q(node).property('newsFolder') != null ? q(node).property('newsFolder') : null}
 	filter = 'Gmedia.News:Category'
 	entryLevel = 0
+	renderType = 'Gmedia.News:Component.CategoryMenu'
 
     renderer = Neos.Fusion:Renderer {
-        type = 'Gmedia.News:Component.CategoryMenu'
+        type = ${props.renderType}
         element.startingPoint = ${props.startingPoint}
         element.filter = ${props.filter}
         element.entryLevel = ${props.entryLevel}
