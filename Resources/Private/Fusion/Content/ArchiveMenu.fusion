@@ -13,10 +13,19 @@ prototype(Gmedia.News:ArchiveMenu) < prototype(Neos.Neos:ContentComponent) {
 	newsListNode = ${newsListNode}
 
     renderer = Neos.Fusion:Renderer {
-        type = ${Configuration.setting('Gmedia.News.renderer.archiveMenu')}
+        type = 'Gmedia.News:Component.ArchiveMenu'
         element.startingPoint = ${props.startingPoint}
         element.filter = ${props.filter}
         element.entryLevel = ${props.entryLevel}
         element.renderHiddenInIndex = ${props.renderHiddenInIndex}
     }
+
+	# uncached the list view
+	@cache {
+		mode = 'uncached'
+		context {
+			1 = 'node'
+			2 = 'documentNode'
+		}
+	}
 }

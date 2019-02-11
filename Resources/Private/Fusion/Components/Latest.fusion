@@ -1,5 +1,0 @@
-prototype(Gmedia.News:Components.Latest) < prototype(Gmedia.News:Components.List) {
-
-    itemRenderer = ${Configuration.setting('Gmedia.News.renderer.latestItem')}
-	
-}

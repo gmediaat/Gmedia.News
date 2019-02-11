@@ -15,7 +15,7 @@ prototype(Gmedia.News:Components.ListItem) < prototype(Neos.Fusion:Component) {
     teaser = ${q(node).children('main').find(configuration.textSelector).first().property('text')}
     teaser.@process.stripTags = ${String.stripTags(value)}
 
-    thumbnail = ${q(node).find(configuration.imageSelector).first().get(0)}
+    thumbnail = ${q(node).children('main').children('[instanceof Neos.NodeTypes:Image]').first().get(0)}
 
     placeholderUri = Neos.Fusion:ResourceUri {
         path = ${configuration.placeholderResource}
@@ -44,7 +44,7 @@ prototype(Gmedia.News:Components.ListItem) < prototype(Neos.Fusion:Component) {
                     {Date.format(props.dateTime, props.configuration.dateFormat)}
                 </i></span>
 
-                <span @if.has={props.authorName}>{Translation.translate(id: 'by')}: {authorName}'}</span>
+                <span @if.has={props.authorName}>{Translation.translate('by')}: {authorName}</span>
 
                 <br />
 

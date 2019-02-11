@@ -1,3 +1,0 @@
-prototype(Gmedia.News:Components.ArchiveMenu) < prototype(Neos.Neos:Menu) {
-    items.@process.group = ${Array.isEmpty(value) ? value : q(value).group().get()}
-}

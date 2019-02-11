@@ -21,22 +21,14 @@ Neos:
 #
 Gmedia:
   News:
-    renderer:
-      metaTags: 'Gmedia.News:Components.MetaTags'
-      archiveMenu: 'Gmedia.News:Components.ArchiveMenu'
-      categoryMenu: 'Gmedia.News:Components.CategoryMenu'
-      latest: 'Gmedia.News:Components.Latest'
-      latestItem: 'Gmedia.News:Components.LatestItem'
-      list: 'Gmedia.News:Components.List'
-      listItem: 'Gmedia.News:Components.ListItem'
     view:
       list:
         pagination:
-          itemsPerPage: 1
+          itemsPerPage: 6
           maximumNumberOfLinks: 15
         sortProperty: 'dateTime'
         sortOrder: 'DESC'
-        dateFormat: 'd. F Y'
+        dateFormat: 'dd. MMMM yyyy'
         thumbnailMaxWidth: 300
         thumbnailMaxHeight: 200
         textSelector: '[instanceof Neos.NodeTypes:Text],[instanceof Neos.NodeTypes:TextWithImage]'
@@ -54,5 +46,5 @@ Gmedia:
         textSelector: '[instanceof Neos.NodeTypes:Text],[instanceof Neos.NodeTypes:TextWithImage]'
         imageSelector: '[instanceof Neos.NodeTypes:Image],[instanceof Neos.NodeTypes:TextWithImage]'
       single:
-        dateFormat: 'd. F Y'
+        dateFormat: 'dd. MMMM yyyy'
 

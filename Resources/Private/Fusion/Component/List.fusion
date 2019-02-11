@@ -1,0 +1,40 @@
+prototype(Gmedia.News:Component.List) < prototype(Neos.Fusion:Component) {
+
+    collectionClass = 'row'
+
+	itemClass = 'col-xs-12 col-md-6'
+	itemRenderer = 'Gmedia.News:Components.ListItem'
+
+	@context {
+		itemRenderer = ${this.itemRenderer}
+		newsCollection = ${this.newsCollection}
+		configuration = ${this.configuration}
+	}
+
+	itemCollection = Neos.Fusion:Loop {
+		items = ${newsCollection}
+		itemName = 'newsItem'
+		itemRenderer = Neos.Fusion:Renderer {
+			type = ${itemRenderer}
+			element.node = ${newsItem}
+			element.configuration = ${configuration}
+		}
+	}
+
+    renderer = afx`
+        <Neos.Fusion:Augmenter class={props.collectionClass}>
+            <div>
+            {props.itemCollection}
+            </div>
+
+        </Neos.Fusion:Augmenter>
+
+        <div @if.has={props.newsCollection ? false : true}>
+            <p>{Translation.translate('noNewsToDisplay','No news to display')}</p>
+        </div>
+
+        <Gmedia.News:Component.Pagination
+            end={Math.floor(q(props.newsCollection).count() / configuration.pagination.itemsPerPage) + 1} />
+    `
+
+}

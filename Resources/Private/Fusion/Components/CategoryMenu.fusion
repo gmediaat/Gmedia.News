@@ -1,1 +1,0 @@
-prototype(Gmedia.News:Components.CategoryMenu) < prototype(Neos.Neos:Menu)

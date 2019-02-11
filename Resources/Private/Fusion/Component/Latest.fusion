@@ -1,0 +1,16 @@
+prototype(Gmedia.News:Component.Latest) < prototype(Gmedia.News:Component.List) {
+
+    renderer = afx`
+		<section class="gn-latest">
+			<div class="gn-latest-inner">
+				<div class="gn-latest-heading">
+					<h2>Blog</h2>
+					<hr class="divider" />
+					<p>{text}</p>
+				</div>
+
+				{props.itemCollection}
+			</div>
+		</section>
+	`
+}

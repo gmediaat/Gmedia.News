@@ -1,4 +1,4 @@
-prototype(Gmedia.News:Components.Pagination) < prototype(Neos.Fusion:Component) {
+prototype(Gmedia.News:Component.Pagination) < prototype(Neos.Fusion:Component) {
     @styleguide {
         title = 'Pagination'
         props {
@@ -18,7 +18,7 @@ prototype(Gmedia.News:Components.Pagination) < prototype(Neos.Fusion:Component) 
     end = 1
 
     # number to highloght as current
-    current = ${String.toInteger(request.arguments.page)}
+    current = ${request.arguments.page ? String.toInteger(request.arguments.page) : 1}
 
     # last possible number (used for "last" if greater than end)
     last = 1
