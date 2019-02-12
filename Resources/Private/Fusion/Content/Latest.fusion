@@ -1,12 +1,11 @@
 # News latest (almost same as list)
 prototype(Gmedia.News:Latest) < prototype(Gmedia.News:List) {
-    # load merged configuration
-    @context.configuration = ${Configuration.setting('Gmedia.News.view.latest')}
-    @context.configuration.@process.mergeConfiguration = ${NewsConfiguration.mergeWithNodeProperties(value, node)}
-    configuration = ${configuration}
-	renderType = 'Gmedia.News:Components.Latest'
+	# load merged configuration
+	@context.configuration = ${Configuration.setting('Gmedia.News.view.latest')}
+	@context.configuration.@process.mergeConfiguration = ${NewsConfiguration.mergeWithNodeProperties(value, node)}
+	configuration = ${configuration}
+	renderType = 'Gmedia.News:Component.Latest'
 
-    # show only few nodes
-    # newsCollection.@process.slice = ${q(value).count() > 0 ? q(value).slice(0, String.toInteger(configuration.numberOfItems)).get() : value}
-
+	# show only few nodes
+	newsCollection.@process.slice = ${q(value).count() > 0 ? q(value).slice(0, String.toInteger(configuration.numberOfItems)).get() : value}
 }

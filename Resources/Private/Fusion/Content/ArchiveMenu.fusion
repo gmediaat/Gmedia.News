@@ -5,13 +5,13 @@ prototype(Gmedia.News:ArchiveMenu) < prototype(Neos.Neos:ContentComponent) {
 	renderHiddenInIndex = true
 	renderType = 'Gmedia.News:Component.ArchiveMenu'
 
-    renderer = Neos.Fusion:Renderer {
-        type = ${props.renderType}
-        element.startingPoint = ${props.startingPoint}
-        element.filter = ${props.filter}
-        element.entryLevel = ${props.entryLevel}
-        element.renderHiddenInIndex = ${props.renderHiddenInIndex}
-    }
+	renderer = Neos.Fusion:Renderer {
+			type = ${props.renderType}
+			element.startingPoint = ${props.startingPoint}
+			element.filter = ${props.filter}
+			element.entryLevel = ${props.entryLevel}
+			element.renderHiddenInIndex = ${props.renderHiddenInIndex}
+	}
 
 	# uncached the list view
 	@cache {

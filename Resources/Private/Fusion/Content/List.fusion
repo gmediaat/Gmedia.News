@@ -21,11 +21,11 @@ prototype(Gmedia.News:List) < prototype(Neos.Neos:ContentComponent) {
 	newsCollection = ${q(newsFolderNode).children('[instanceof Gmedia.News:News]').get()}
 
 	# Filter and sorting
-	#@override.filterByCategories = ${q(node).is('[instanceof Gmedia.News:List]') ? q(node).property_array('filterByCategories') != null ? Array.join(q(node).property_array('filterByCategories')) : '' : ''}
+	@context.filterByCategories = ${q(node).is('[instanceof Gmedia.News:List]') ? q(node).property_array('filterByCategories') != null ? Array.join(q(node).property_array('filterByCategories')) : ''}
 	@context.filterByTag = ${request.arguments.tag}
 	@context.filterByYear = ${request.arguments.year}
 	@context.filterByMonth = ${request.arguments.month}
-    @context.currentPaginationPage = ${request.arguments.page ? String.toInteger(request.arguments.page) : 1}
+	@context.currentPaginationPage = ${request.arguments.page ? String.toInteger(request.arguments.page) : 1}
 
 	# 1. filter the news collection by one or many categories if applicable
 	# this internally uses the extended filter() operation
@@ -41,12 +41,9 @@ prototype(Gmedia.News:List) < prototype(Neos.Neos:ContentComponent) {
 	newsCollection.@process.filterByTag = ${filterByTag != null ? q(value).filter('[tags *= ' + filterByTag + ']').get() : value}
 
 	# sort nodes
-    newsCollection.@process.sort = ${q(value).count() > 0 ? q(value).sort(configuration.sortProperty, configuration.sortOrder).get() : value}
+	newsCollection.@process.sort = ${q(value).count() > 0 ? q(value).sort(configuration.sortProperty, configuration.sortOrder).get() : value}
 
 	paginationEnd = ${Math.floor(q(this.newsCollection).count() / configuration.pagination.itemsPerPage) + 1}
-	debug = ${((currentPaginationPage - 1)  * configuration.pagination.itemsPerPage)}
-	// newsCollection.@process.pagination = ${configuration.pagination.itemsPerPage > 0 ? q(value).slice((1 - currentPaginationPage ) * configuration.pagination.itemsPerPage, configuration.pagination.itemsPerPage) : value}
-	// newsCollection.@process.pagination = ${configuration.pagination.itemsPerPage > 0 ? q(value).slice((currentPaginationPage - 1) * configuration.pagination.itemsPerPage, configuration.pagination.itemsPerPage).get() : value}
 
 	renderer = Neos.Fusion:Renderer {
 		type = ${props.renderType}

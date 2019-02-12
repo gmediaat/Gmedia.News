@@ -1,5 +1,4 @@
 prototype(Gmedia.News:Folder) < prototype(Neos.Neos:ContentComponent) {
-
 	renderType = ''
 
 	renderer = Neos.Fusion:Renderer {
