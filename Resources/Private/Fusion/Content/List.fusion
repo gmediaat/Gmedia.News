@@ -21,7 +21,7 @@ prototype(Gmedia.News:List) < prototype(Neos.Neos:ContentComponent) {
 	newsCollection = ${q(newsFolderNode).children('[instanceof Gmedia.News:News]').get()}
 
 	# Filter and sorting
-	@context.filterByCategories = ${q(node).is('[instanceof Gmedia.News:List]') ? q(node).property_array('filterByCategories') != null ? Array.join(q(node).property_array('filterByCategories')) : ''}
+	@context.filterByCategories = ${q(node).is('[instanceof Gmedia.News:List]') ? q(node).property('filterByCategories') != null ? Array.join(q(node).property('filterByCategories')) : ''}
 	@context.filterByTag = ${request.arguments.tag}
 	@context.filterByYear = ${request.arguments.year}
 	@context.filterByMonth = ${request.arguments.month}
