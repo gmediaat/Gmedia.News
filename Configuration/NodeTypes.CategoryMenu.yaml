@@ -1,0 +1,8 @@
+'Gmedia.News:CategoryMenu':
+  superTypes:
+    'Gmedia.News:Menu': TRUE
+  ui:
+    label: 'News category menu'
+    icon: 'icon-list'
+    inlineEditable: TRUE
+    group: 'news'

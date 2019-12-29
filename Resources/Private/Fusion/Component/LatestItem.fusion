@@ -1,0 +1,1 @@
+prototype(Gmedia.News:Components.LatestItem) < prototype(Gmedia.News:Components.ListItem)

@@ -1,8 +1,0 @@
-# Category menu
-# this is inherited from Neos.NodeTypes:Menu
-# So only the facility of newsFolder is added
-prototype(Gmedia.News:CategoryMenu) < prototype(Neos.NodeTypes:Menu) {
-	startingPoint = ${q(node).property('newsFolder') != null ? q(node).property('newsFolder') : null}
-	filter = 'Gmedia.News:Category'
-	entryLevel = 0
-}

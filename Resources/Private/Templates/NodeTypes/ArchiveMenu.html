@@ -11,9 +11,9 @@
                         <f:for each="{item}" as="subItem" key="month">
                             <li>
                                 <!-- TODO: use node viewHelper for arguments-->
-                                <f:link.action action="show" controller="Frontend\Node" package="TYPO3.Neos" arguments="{node: newsListNode, year: year, month: month}">
+                                <neos:link.node node="{newsListNode}" arguments="{node: newsListNode, year: year, month: month}">
                                     <f:format.date format="F">{year}-{month}-01</f:format.date>
-                                </f:link.action>
+                                </neos:link.node>
                                 <span class="count">({subItem -> f:count()})</span>
                             </li>
                         </f:for>
@@ -23,6 +23,6 @@
         </ul>
     </f:then>
 	<f:else>
-		<p><f:translate id="noNewsToDisplay" package="Lelesys.News">No news to display</f:translate></p>
+		<p><f:translate id="noNewsToDisplay" package="Gmedia.News">No news to display</f:translate></p>
 	</f:else>
 </f:if>

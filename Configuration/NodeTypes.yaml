@@ -297,29 +297,9 @@
       validation:
         'Neos.Neos/Validation/IntegerValidator': []
 
-'Gmedia.News:Menu':
-  abstract: TRUE
-  superTypes:
-    'Neos.NodeTypes:Menu': TRUE
-  properties:
-    newsFolder:
-      type: reference
-      ui:
-        label: 'News folder'
-        reloadIfChanged: TRUE
-        inspector:
-          group: 'options'
-          editorOptions:
-            nodeTypes: ['Gmedia.News:Folder']
 
-'Gmedia.News:CategoryMenu':
-  superTypes:
-    'Gmedia.News:Menu': TRUE
-  ui:
-    label: 'News category menu'
-    icon: 'icon-list'
-    inlineEditable: TRUE
-    group: 'news'
+
+
 
 'Gmedia.News:ArchiveMenu':
   superTypes:

@@ -1,0 +1,16 @@
+prototype(Gmedia.News:Component.CategoryMenu) < prototype(Gmedia.FusionMenu:Menu) {
+
+	items = ${[]}
+
+	renderer = afx`
+		<ul>
+			<Neos.Fusion:Collection items={props.items} itemName="item">
+				<li class={item.state}>
+					<Gmedia.News:Component.NodeLinkTag node={item.node}>
+						{item.label}
+					</Gmedia.News:Component.NodeLinkTag>
+				</li>
+			</Neos.Fusion:Collection>
+		</ul>
+	`
+}

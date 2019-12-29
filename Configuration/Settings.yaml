@@ -24,13 +24,15 @@ Gmedia:
     view:
       list:
         pagination:
-          itemsPerPage: 10
+          itemsPerPage: 6
           maximumNumberOfLinks: 15
         sortProperty: 'dateTime'
         sortOrder: 'DESC'
-        dateFormat: 'd M Y'
-        thumbnailMaxWidth: 80
-        thumbnailMaxHeight: 80
+        dateFormat: 'dd. MMMM yyyy'
+        thumbnailMaxWidth: 300
+        thumbnailMaxHeight: 200
+        textSelector: '[instanceof Neos.NodeTypes:Text],[instanceof Neos.NodeTypes:TextWithImage]'
+        imageSelector: '[instanceof Neos.NodeTypes:Image],[instanceof Neos.NodeTypes:TextWithImage]'
       latest:
         numberOfItems: 10
         pagination:
@@ -41,6 +43,8 @@ Gmedia:
         dateFormat: 'd. F Y'
         thumbnailMaxWidth: 80
         thumbnailMaxHeight: 80
+        textSelector: '[instanceof Neos.NodeTypes:Text],[instanceof Neos.NodeTypes:TextWithImage]'
+        imageSelector: '[instanceof Neos.NodeTypes:Image],[instanceof Neos.NodeTypes:TextWithImage]'
       single:
-        dateFormat: 'd. F Y'
+        dateFormat: 'dd. MMMM yyyy'
 

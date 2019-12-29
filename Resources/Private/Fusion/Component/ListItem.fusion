@@ -1,0 +1,61 @@
+prototype(Gmedia.News:Components.ListItem) < prototype(Neos.Fusion:Component) {
+
+    containerClass = Neos.Fusion:RawArray
+
+    @context.node = ${this.node}
+
+    nodeUri = Neos.Neos:NodeUri {
+        node = ${node}
+    }
+
+    title = ${q(node).property('title')}
+    dateTime = ${q(node).property('dateTime')}
+    authorName = ${q(node).property('authorName')}
+
+    teaser = ${q(node).children('main').find(configuration.textSelector).first().property('text')}
+    teaser.@process.stripTags = ${String.stripTags(value)}
+
+    thumbnail = ${q(node).children('main').children('[instanceof Neos.NodeTypes:Image]').first().get(0)}
+
+    placeholderUri = Neos.Fusion:ResourceUri {
+        path = ${configuration.placeholderResource}
+    }
+
+    renderer = afx`
+        <div class={props.containerClass}>
+
+            <figure @if.has={props.thumbnail.properties.image} class="typo3-neos-alignment-left">
+                <Neos.Neos:ImageTag asset={props.thumbnail.properties.image}
+                    maximumWidth={props.configuration.thumbnailMaxWidth}
+                    maximumHeight={props.configuration.thumbnailMaxHeight}
+                    alt={props.thumbnail.properties.alternativeText} />
+            </figure>
+
+            <figure
+                @if.hasNot={!props.thumbnail.properties.image}
+                @if.has={props.configuration.placeholderResource}
+                class="typo3-neos-alignment-left">
+                <img src={props.placeholderUri} />
+            </figure>
+
+            <h5><a href={props.nodeUri}>{props.title}</a></h5>
+            <p>
+                <span @if.has={props.dateTime}><i>
+                    {Date.format(props.dateTime, props.configuration.dateFormat)}
+                </i></span>
+
+                <span @if.has={props.authorName}>{Translation.translate('by')}: {authorName}</span>
+
+                <br />
+
+                {String.cropAtWord(String.stripTags(props.teaser), 100, '…')}
+
+                <br />
+
+                <a href={props.nodeUri}>
+                    {Translation.translate('readMore','Read more')}
+                </a>
+            </p>
+        </div>
+    `
+}

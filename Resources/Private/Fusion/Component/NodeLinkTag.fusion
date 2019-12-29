@@ -1,0 +1,25 @@
+prototype(Gmedia.News:Component.NodeLinkTag) < prototype(Neos.Fusion:Component) {
+
+	arguments = Neos.Fusion:DataStructure
+	node = null
+
+	@context {
+		node = ${this.node}
+		arguments = ${this.arguments}
+	}
+
+	attributes = Neos.Fusion:DataStructure
+
+	nodeUri = Neos.Neos:NodeUri {
+		node = ${node}
+		additionalParams = ${arguments}
+	}
+
+	content = ${this.value}
+
+	renderer = afx`
+		<a href={props.nodeUri} {...props.attributes}>
+			{props.content}
+		</a>
+	`
+}

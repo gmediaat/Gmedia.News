@@ -1,7 +1,7 @@
-# single news document. formatting by single news item can be changed
-# inside other views like List, Latest by overriding the template path or
-# additional TS properties
-prototype(Gmedia.News:News) {
+prototype(Gmedia.News:News) < prototype(Neos.Neos:ContentComponent) {
+
+	renderType = ''
+
 	@override.configuration = ${inputConfiguration ? inputConfiguration : Configuration.setting('Gmedia.News.view.single')}
 	@override.configuration.@process.mergeConfiguration = ${inputConfiguration ? value : NewsConfiguration.mergeWithNodeProperties(value, node)}
 	configuration = ${configuration}
@@ -9,7 +9,7 @@ prototype(Gmedia.News:News) {
 	# first image found in the news content becomes the thumbnail image to be shown in the
 	# list and latest views
 	thumbnailImage = ${q(node).find('[instanceof Neos.NodeTypes:Image],[instanceof Neos.NodeTypes:TextWithImage]').first().get(0)}
-	
+
 	head.stylesheets.siteHeader {
 		backgroundImage = ${this.thumbnailImage}
 	}
@@ -21,23 +21,27 @@ prototype(Gmedia.News:News) {
 	teaserText = ${q(node).children('main').children('[instanceof Neos.NodeTypes:Text]').property('text')}
 
 	# split tags with comma seperated
-	tags = ${q(node).property('tags') != null && q(node).property('tags') != '' ? String.split(q(node).property('tags'), ',') : null}
+	tags = ${String.length( q(node).property('tags') ) > 0 ? String.split(q(node).property('tags'), ',') : null}
 
 	# the node where the list view is presented
 	# this can be overridden to change the different news list view
 	@override.newsListNode = ${q(node).closest('[instanceof Gmedia.News:Folder]').get(0)}
 	newsListNode = ${newsListNode}
-	
+
 	prototype(Neos.NodeTypes:Text) {
 		attributes.class = Neos.Fusion:RawArray {
 			class1 = 'gn-news-detail-text'
 		}
 	}
-	
+
 	firstTextElement = ${q(node).children('main').children('[instanceof Neos.NodeTypes:Text]').get()}
 	firstTextElement.attributes.class = 'lead'
-	
+
 	prototype(Neos.NodeTypes:Image) {
 		attributes.class = 'gn-news-detail-image'
+	}
+
+	renderer = Neos.Fusion:Renderer {
+		type = ${props.renderType}
 	}
 }

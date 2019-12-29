@@ -2,7 +2,6 @@
 	"name": "gmedia/news",
 	"type": "neos-plugin",
 	"description": "News plugin for Neos",
-	"version": "4.0.3",
 	"license": "GPL-3.0+",
 	"authors": [
 		{
@@ -14,11 +13,17 @@
 		}
 	],
 	"require": {
-		"neos/neos": "*"
+		"neos/neos": "^4.0 || ^5.0",
+        "neos/fusion-afx": "^1.3"
 	},
 	"autoload": {
 		"psr-4": {
 			"Gmedia\\News\\": "Classes"
 		}
-	}
+	},
+    "extra": {
+        "neos": {
+            "package-key": "Gmedia.News"
+        }
+    }
 }

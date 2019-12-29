@@ -1,0 +1,15 @@
+prototype(Gmedia.News:CategoryMenu) < prototype(Neos.Neos:ContentComponent) {
+
+	menuItems = Neos.Neos:MenuItems {
+		startingPoint = ${q(node).property('newsFolder') != null ? q(node).property('newsFolder') : site}
+		filter = 'Gmedia.News:Category'
+		entryLevel = 0
+	}
+
+	renderType = 'Gmedia.News:Component.CategoryMenu'
+
+	renderer = Neos.Fusion:Renderer {
+		type = ${props.renderType}
+		element.items = ${props.menuItems}
+	}
+}
