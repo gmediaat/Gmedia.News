@@ -1,6 +1,7 @@
 prototype(Gmedia.News:Component.ArchiveMenu) < prototype(Gmedia.FusionMenu:Menu) {
 
-    items.@process.group = ${Array.isEmpty(value) ? value : q(value).group().get()}
+    // items.@process.group = ${Array.isEmpty(value) ? value : q(value).group().get()}
+	items = ${[]}
 
 	renderer = afx`
 		<ul>
@@ -11,7 +12,7 @@ prototype(Gmedia.News:Component.ArchiveMenu) < prototype(Gmedia.FusionMenu:Menu)
 						<Neos.Fusion:Loop items={item} itemName="subItem" itemKey="month" @children="itemRenderer">
 							<li>
 								<Gmedia.News:Component.NodeLinkTag node={props.newsListNode} arguments.node={props.newsListNode} arguments.year={year} arguments.month={month}>
-									foo
+									{month}
 								</Gmedia.News:Component.NodeLinkTag>
 								<span class="count">({Array.length(subItem)})</span>
 							</li>

@@ -1,6 +1,8 @@
 prototype(Gmedia.News:Component.CategoryMenu) < prototype(Gmedia.FusionMenu:Menu) {
+
+	items = ${[]}
+
 	renderer = afx`
-		<Neos.Fusion:Debug>{props.items}</Neos.Fusion:Debug>
 		<ul>
 			<Neos.Fusion:Collection items={props.items} itemName="item">
 				<li class={item.state}>

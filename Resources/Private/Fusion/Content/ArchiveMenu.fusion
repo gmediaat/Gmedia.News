@@ -1,16 +1,19 @@
 prototype(Gmedia.News:ArchiveMenu) < prototype(Neos.Neos:ContentComponent) {
-	startingPoint = ${q(node).property('newsFolder') != null ? q(node).property('newsFolder') : null}
-	filter = 'Gmedia.News:News'
-	entryLevel = 0
-	renderHiddenInIndex = true
+
+	menuItems = Neos.Neos:MenuItems {
+		startingPoint = ${q(node).property('newsFolder') != null ? q(node).property('newsFolder') : null}
+		filter = 'Gmedia.News:News'
+		entryLevel = 0
+		renderHiddenInIndex = true
+		@process.group = ${Array.isEmpty(value) ? value : q(value).group().get()}
+		@process.sort = ${Array.ksort(value)}
+	}
+
 	renderType = 'Gmedia.News:Component.ArchiveMenu'
 
 	renderer = Neos.Fusion:Renderer {
-			type = ${props.renderType}
-			element.startingPoint = ${props.startingPoint}
-			element.filter = ${props.filter}
-			element.entryLevel = ${props.entryLevel}
-			element.renderHiddenInIndex = ${props.renderHiddenInIndex}
+		type = ${props.renderType}
+		element.items = ${props.menuItems}
 	}
 
 	# uncached the list view
